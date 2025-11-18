@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackendController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\QueriesController;
@@ -41,10 +42,19 @@ Route::get("/query/method/join", [QueriesController::class, "join"]);
 Route::get("/query/method/groupBy", [QueriesController::class, "groupBy"]);
 
 Route::apiResource("/product", ProductController::class)
-    ->middleware(
-        // CheckValueInHeader::class,
+    ->middleware([
         // UppercaseName::class,
-        // "checkValue:4545,pato"
-        LogRequest::class
-    )
+        // CheckValueInHeader::class,
+        // "checkValue:4545,pato",
+        "jwt.auth",
+        LogRequest::class,
+    ])
 ;
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::middleware("jwt.auth")->group(function () {
+    Route::get('userLogged', [AuthController::class, 'getAuthenticatedUser']);
+});

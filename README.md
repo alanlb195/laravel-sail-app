@@ -22,3 +22,12 @@ After that, you can check the status of the project whithe the next url:
 ```
 http://localhost/api/test
 ```
+
+
+how to execute commands?
+
+example:
+
+```
+./vendor/bin/sail php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+```
