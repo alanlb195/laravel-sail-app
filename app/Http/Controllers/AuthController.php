@@ -60,18 +60,6 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
-
-
-    public function respondWithToken($token)
-    {
-        return response()->json([
-            'token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => JWTAuth::factory()->getTTL()
-        ]);
-    }
-
-
     public function getAuthenticatedUser()
     {
         $user = auth('api')->user();
@@ -99,5 +87,29 @@ class AuthController extends Controller
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
+    }
+
+    public function refresh()
+    {
+        try {
+            $newToken = auth('api')->refresh();
+            return $this->respondWithToken($newToken);
+        } catch(JWTException $e) {
+            return response()->json(
+                [
+                    "message" => 'No se pudo refrescar el token',
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    public function respondWithToken($token)
+    {
+        return response()->json([
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => JWTAuth::factory()->getTTL()
+        ]);
     }
 }

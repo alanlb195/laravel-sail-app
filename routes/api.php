@@ -53,8 +53,9 @@ Route::apiResource("/product", ProductController::class)
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware("jwt.auth")->group(function () {
-    Route::get('userLogged', [AuthController::class, 'getAuthenticatedUser']);
+    Route::get('/userLogged', [AuthController::class, 'getAuthenticatedUser']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
 });

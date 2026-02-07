@@ -1,33 +1,56 @@
-# Laravel Sail - Template Project
+Here is your improved **README.md**, fully in English, formatted as plain Markdown, without code fences, and ready to drop into a file:
 
+---
 
-## Startup
-```
-git clone [repo_name]
+# Laravel Sail — Template Project
 
-cd [project_name]
+## Requirements
 
-composer install
+* Composer
+* Docker Desktop
 
-cp .env.example .env
-```
+## Startup Instructions
 
-How to start the project:
+1. Clone the repository.
+   Important: Do not clone this project on an external hard drive, as Docker Desktop cannot mount volumes from external devices on macOS.
 
-```bash
-docker compose up -d
-```
+   git clone [repo_name]
 
-After that, you can check the status of the project whithe the next url:
-```
-http://localhost/api/test
-```
+2. Move into the project directory.
 
+   cd [project_name]
 
-how to execute commands?
+3. Install the PHP dependencies.
 
-example:
+   composer install
 
-```
-./vendor/bin/sail php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
-```
+4. Create the environment configuration file.
+
+   cp .env.example .env
+
+5. Start the Sail environment using Docker.
+
+   ./vendor/bin/sail up -d
+
+## Development Guide
+
+Once the containers are running, you can access the test API endpoint to verify the system is working:
+
+[http://localhost/api/test](http://localhost/api/test)
+
+This endpoint returns the text:
+“The backend is working correctly.” (in Spanish)
+
+### Running Artisan Commands with Sail
+
+Execute migrations:
+
+./vendor/bin/sail artisan migrate
+
+Run database seeders:
+
+./vendor/bin/sail artisan db:seed
+
+---
+
+If you want, I can also help you add badges, a project structure section, Docker troubleshooting notes, or instructions for creating an alias for Sail.
