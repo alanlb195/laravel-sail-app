@@ -9,6 +9,7 @@ use App\Http\Middleware\CheckValueInHeader;
 use App\Http\Middleware\LogRequest;
 use App\Http\Middleware\UppercaseName;
 use Illuminate\Support\Facades\Route;
+use App\Business\Services\UsersService;
 
 Route::get("/test", function () {
     return "El backend funciona correctamente";
@@ -66,3 +67,4 @@ Route::get("/info/message", [InfoController::class, 'message']);
 Route::get("/info/iva/{id}", [InfoController::class, 'iva']);
 Route::get("/info/encrypt/{data}", [InfoController::class, 'encrypt']);
 Route::get("/info/decrypt/{data}", [InfoController::class, 'decrypt']);
+Route::get("/info/encryptEmail/{userId}", [InfoController::class, 'encryptEmail']);

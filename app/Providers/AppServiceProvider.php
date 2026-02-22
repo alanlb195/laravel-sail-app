@@ -7,6 +7,7 @@ use App\Business\Interfaces\MessageServiceInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Business\Services\HiUserService;
 use App\Business\Services\EncryptService;
+use App\Business\Services\UsersService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(EncryptService::class, function () {
             return new EncryptService(env('KEY_ENCRYPT'));
+        });
+
+        $this->app->bind(UsersService::class, function ($app) {
+            return new UsersService($app->make(EncryptService::class));
         });
     }
 

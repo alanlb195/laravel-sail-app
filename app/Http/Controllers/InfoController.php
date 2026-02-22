@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Business\Interfaces\MessageServiceInterface;
 use App\Business\Services\EncryptService;
 use App\Business\Services\ProductService;
+use App\Business\Services\UsersService;
 use App\Models\Product;
 
 class InfoController extends Controller
@@ -13,8 +14,8 @@ class InfoController extends Controller
     public function __construct(
         protected ProductService $productService,
         protected EncryptService $encryptService,
-    )
-    { }
+        protected UsersService $usersService,
+    ) {}
 
     public function message(MessageServiceInterface $hiService)
     {
@@ -54,4 +55,13 @@ class InfoController extends Controller
         ]);
     }
 
+    public function encryptEmail(int $userId)
+    {
+
+        $emailEncrypted = $this->usersService->encryptEmail($userId);
+
+        return response()->json([
+            'data' => $emailEncrypted,
+        ]);
+    }
 }
