@@ -73,4 +73,16 @@ class InfoController extends Controller
     {
         return response()->json($this->singletonService->value . " " . $singletonService2->value);
     }
+
+
+    public function encryptEmail2(int $userId)
+    {
+        $usersService = app()->make(UsersService::class);
+
+        $emailEncrypted = $usersService->encryptEmail($userId);
+
+        return response()->json([
+            'data' => $emailEncrypted,
+        ]);
+    }
 }
