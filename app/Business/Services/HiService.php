@@ -8,6 +8,6 @@ class HiService implements MessageServiceInterface
 {
     public function hi()
     {
-        return "Hello world";
+        return "Hello world from HiService";
     }
 }

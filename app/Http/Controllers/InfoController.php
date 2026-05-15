@@ -15,11 +15,12 @@ class InfoController extends Controller
         protected ProductService $productService,
         protected EncryptService $encryptService,
         protected UsersService $usersService,
+        protected MessageServiceInterface $hiService
     ) {}
 
-    public function message(MessageServiceInterface $hiService)
+    public function message()
     {
-        return response()->json($hiService->hi());
+        return response()->json($this->hiService->hi());
     }
 
     public function iva(int $id)
