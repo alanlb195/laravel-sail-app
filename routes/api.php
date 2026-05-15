@@ -68,3 +68,4 @@ Route::get("/info/iva/{id}", [InfoController::class, 'iva']);
 Route::get("/info/encrypt/{data}", [InfoController::class, 'encrypt']);
 Route::get("/info/decrypt/{data}", [InfoController::class, 'decrypt']);
 Route::get("/info/encryptEmail/{userId}", [InfoController::class, 'encryptEmail']);
+Route::get("/info/singleton", [InfoController::class, 'singleton']);

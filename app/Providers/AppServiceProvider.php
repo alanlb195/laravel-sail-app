@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Business\Services\HiUserService;
 use App\Business\Services\EncryptService;
 use App\Business\Services\HiService;
+use App\Business\Services\SingletonService;
 use App\Business\Services\UsersService;
 use App\Http\Controllers\InfoController;
 
@@ -30,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(UsersService::class, function ($app) {
             return new UsersService($app->make(EncryptService::class));
+        });
+
+        $this->app->singleton(SingletonService::class, function ($app) {
+            return new SingletonService();
         });
     }
 

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Business\Interfaces\MessageServiceInterface;
 use App\Business\Services\EncryptService;
 use App\Business\Services\ProductService;
+use App\Business\Services\SingletonService;
 use App\Business\Services\UsersService;
 use App\Models\Product;
+use Illuminate\Container\Attributes\Singleton;
 
 class InfoController extends Controller
 {
@@ -15,7 +17,8 @@ class InfoController extends Controller
         protected ProductService $productService,
         protected EncryptService $encryptService,
         protected UsersService $usersService,
-        protected MessageServiceInterface $hiService
+        protected MessageServiceInterface $hiService,
+        protected SingletonService $singletonService,
     ) {}
 
     public function message()
@@ -64,5 +67,10 @@ class InfoController extends Controller
         return response()->json([
             'data' => $emailEncrypted,
         ]);
+    }
+
+    public function singleton(SingletonService $singletonService2)
+    {
+        return response()->json($this->singletonService->value . " " . $singletonService2->value);
     }
 }
