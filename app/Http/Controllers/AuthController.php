@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserRegistered;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
@@ -21,6 +22,8 @@ class AuthController extends Controller
             'email' => $validatedData["email"],
             'password' => bcrypt($validatedData["password"])
         ]);
+
+        event(new UserRegistered($user));
 
         return response()->json(
             [
@@ -94,7 +97,7 @@ class AuthController extends Controller
         try {
             $newToken = auth('api')->refresh();
             return $this->respondWithToken($newToken);
-        } catch(JWTException $e) {
+        } catch (JWTException $e) {
             return response()->json(
                 [
                     "message" => 'No se pudo refrescar el token',
