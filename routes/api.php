@@ -9,6 +9,7 @@ use App\Http\Middleware\CheckValueInHeader;
 use App\Http\Middleware\LogRequest;
 use App\Http\Middleware\UppercaseName;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
 use App\Business\Services\UsersService;
 
 Route::get("/test", function () {
@@ -70,3 +71,6 @@ Route::get("/info/decrypt/{data}", [InfoController::class, 'decrypt']);
 Route::get("/info/encryptEmail/{userId}", [InfoController::class, 'encryptEmail']);
 Route::get("/info/singleton", [InfoController::class, 'singleton']);
 Route::get("/info/encryptEmail/{userId}", [InfoController::class, 'encryptEmail']);
+
+
+Route::get("/api", [ApiController::class, "get"]);
