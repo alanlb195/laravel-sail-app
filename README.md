@@ -6,31 +6,36 @@ Here is your improved **README.md**, fully in English, formatted as plain Markdo
 
 ## Requirements
 
-* Composer
-* Docker Desktop
+- Composer
+- Docker Desktop
 
 ## Startup Instructions
 
 1. Clone the repository.
    Important: Do not clone this project on an external hard drive, as Docker Desktop cannot mount volumes from external devices on macOS.
 
-   git clone [repo_name]
+    git clone [repo_name]
 
 2. Move into the project directory.
 
-   cd [project_name]
+    cd [project_name]
 
 3. Install the PHP dependencies.
 
-   composer install
+    composer install
 
 4. Create the environment configuration file.
 
-   cp .env.example .env
+    cp .env.example .env
 
 5. Start the Sail environment using Docker.
 
-   ./vendor/bin/sail up -d
+    ./vendor/bin/sail up -d
+
+6. To make it easier to use the sail command, you can add an alias to your shell.
+
+    On Mac/Linux:
+    alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
 ## Development Guide
 
