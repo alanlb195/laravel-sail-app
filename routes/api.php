@@ -44,15 +44,15 @@ Route::get("/query/method/join", [QueriesController::class, "join"]);
 
 Route::get("/query/method/groupBy", [QueriesController::class, "groupBy"]);
 
-Route::apiResource("/product", ProductController::class)
-    ->middleware([
-        // UppercaseName::class,
-        // CheckValueInHeader::class,
-        // "checkValue:4545,pato",
-        "jwt.auth",
-        LogRequest::class,
-    ])
-;
+Route::apiResource("/product", ProductController::class);
+// ->middleware([
+// UppercaseName::class,
+// CheckValueInHeader::class,
+// "checkValue:4545,pato",
+// "jwt.auth",
+// LogRequest::class,
+// ])
+// ;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');

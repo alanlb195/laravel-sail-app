@@ -46,7 +46,7 @@ class ProductController extends Controller
 
             return response()->json($product);
         } catch (ValidationException $e) {
-            return response()->json(["error" => $e->errors()], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return response()->json(["errors" => $e->errors()], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
 
@@ -61,7 +61,7 @@ class ProductController extends Controller
 
             return response()->json(["message" => "Producto actualizado exitosamente", "product" => $product], Response::HTTP_OK);
         } catch (Exception $e) {
-            return response()->json(["error: " => $e], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(["errors" => $e], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 

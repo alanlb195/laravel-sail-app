@@ -37,6 +37,16 @@ Here is your improved **README.md**, fully in English, formatted as plain Markdo
     On Mac/Linux:
     alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
+## Example of usage:
+
+To run a command in the backend:
+
+    sail artisan <command>
+
+To run a test in the backend:
+
+    sail artisan test
+
 ## Development Guide
 
 Once the containers are running, you can access the test API endpoint to verify the system is working:
@@ -50,11 +60,11 @@ This endpoint returns the text:
 
 Execute migrations:
 
-./vendor/bin/sail artisan migrate
+sail artisan migrate
 
 Run database seeders:
 
-./vendor/bin/sail artisan db:seed
+sail artisan db:seed
 
 ---
 

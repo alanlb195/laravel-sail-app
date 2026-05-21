@@ -16,7 +16,7 @@ class EncryptService
 
     public function encrypt(string $data): string
     {
-        return base64_encode($this->key.":".Crypt::encryptString($data));
+        return base64_encode($this->key . ":" . Crypt::encryptString($data));
     }
 
     public function decrypt(string $data): string
@@ -31,6 +31,5 @@ class EncryptService
         }
 
         return Crypt::decryptString($encrypted);
-
     }
 }
